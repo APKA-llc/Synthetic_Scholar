@@ -6,7 +6,7 @@ from fpdf import FPDF
 import re
 import time
 
-API_KEY = "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"
+API_KEY = "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"
 model_engine = "text-davinci-002"
 
 
@@ -20,27 +20,36 @@ def main():
     # Get the generated text
     # generated_text = response["choices"][0]["text"]
 
-    subjects = open('ListOfClasses.txt', 'r')
+    subjects = open('topics.txt', 'r')
 
     current_subject = ""
     list_of_topics = []
     current_topic = ""
 
+    subject_pattern = re.compile("(.+):")
+    topic_pattern = re.compile("(\"|')([\w\s']+),?('|\")")
+
     for line in subjects.readlines():
-        time.sleep(5)
-        current_subject = repr(line).replace("\\n", "").replace("'", "")
-        list_of_topics = topic_generator(current_subject)
-        print(current_subject + ":" + str(list_of_topics))
-        print(list_of_topics)
+        list_of_topics.clear()
+
+        subjects = subject_pattern.finditer(line)
+        for subject in subjects:
+            current_subject = subject.group(1)
+
+        topics = topic_pattern.finditer(line)
+        for topic in topics:
+            list_of_topics.append(topic.group(2))
+
 
         for index, topic in enumerate(list_of_topics):
             current_topic = list_of_topics[index]
-            prompt = "Write an organized, detailed study guide on " + current_topic + " for " + current_subject + ". Include relevant definitions and equations."
+            #prompt = "Write an extremely detailed study guide on " + current_topic + " for " + current_subject + ". Talk about all aspects of the topic. Include relevant definitions and equations! Also include practice problems when possible."
+            prompt = "Write a multiple choice test on " + current_topic + " for " + current_subject + " with an answer key at the end."
 
             response = openai.Completion.create(
                 engine=model_engine,
                 prompt=prompt,
-                temperature=0.3,
+                temperature=0.0,
                 max_tokens=3800,
                 top_p=1,
                 frequency_penalty=0,

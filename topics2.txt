@@ -1,0 +1,1 @@
+MATH 1552 Integral Calculus:['Definite integrals', 'Indefinite integrals', 'The Fundamental Theorem of Calculus', 'Applications of integration', 'Integration by substitution', 'Integration by parts', 'Partial fractions', 'Improper integrals', 'Sequences and series', 'Power series', 'Taylor and Maclaurin series']
