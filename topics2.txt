@@ -1,1 +1,2 @@
-MATH 1552 Integral Calculus:['Definite integrals', 'Indefinite integrals', 'The Fundamental Theorem of Calculus', 'Applications of integration', 'Integration by substitution', 'Integration by parts', 'Partial fractions', 'Improper integrals', 'Sequences and series', 'Power series', 'Taylor and Maclaurin series']
+PHYS 2211 Introductory Physics I Mechanics:['Kinematics', 'Dynamics', 'Energy', 'Momentum', 'Angular Momentum', 'Torque', 'Fluids', 'Oscillations', 'Waves']
+PHYS 2212 Introductory Physics II Electricity and Magnetism:['Electric fields', "Gauss's law", 'Electric potential', 'Capacitors', 'Current and resistance', 'DC circuits', 'Magnetic fields', 'Sources of magnetic fields', 'Magnetism of materials', 'Electromagnetic induction', 'AC circuits']
