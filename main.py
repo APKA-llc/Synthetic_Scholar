@@ -6,8 +6,8 @@ from fpdf import FPDF
 import re
 import time
 
-API_KEY = "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"
-model_engine = "text-davinci-002"
+API_KEY = "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"
+model_engine = "text-davinci-003"
 
 
 def main():
@@ -43,13 +43,13 @@ def main():
 
         for index, topic in enumerate(list_of_topics):
             current_topic = list_of_topics[index]
-            prompt = "Write extremely detailed lecture notes on " + current_topic + " for the course " + current_subject + ". Talk about all aspects of the topic. Include relevant definitions and equations! Also include practice problems when possible."
+            prompt = "Imagine you are a student preparing for a final exam. Write a very detailed study guide on " + current_topic + " for the course " + current_subject + ". You can include relevant definitions, equations, and practice problems when possible."
             #prompt = "Write a multiple choice test on " + current_topic + " for " + current_subject + " with an answer key at the end."
 
             response = openai.Completion.create(
                 engine=model_engine,
                 prompt=prompt,
-                temperature=0.75,
+                temperature=0.0,
                 max_tokens=3800,
                 top_p=1,
                 frequency_penalty=0,
@@ -58,6 +58,8 @@ def main():
 
             # Get the generated text
             generated_text = response["choices"][0]["text"]
+
+            print(generated_text)
 
             generate_pdf(generated_text, current_subject, current_topic)
 
@@ -116,6 +118,7 @@ def generate_pdf(text, subject, topic):
     splitted = final_text.split('\n')
 
     for line in splitted:
+        line.encode('utf-16', 'replace').decode('utf-16')
         lines = textwrap.wrap(line, width_text)
 
         if len(lines) == 0:
