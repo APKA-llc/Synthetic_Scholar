@@ -1,0 +1,107 @@
+CS 1331 Introduction to Object-Oriented Programming
+CS 1332 Data Structures and Algorithms
+CS 2050 Introduction to Discrete Mathematics
+MATH 1551 Differential Calculus
+MATH 1552 Integral Calculus
+MATH 2551 Multivariable Calculus
+MATH 1554 Linear Algebra
+MATH 3406 Advanced Linear Algebra
+MATH 2552 Differential Equations
+MATH 3215 Introduction to Probability and Statistics
+MATH 3012 Applied Combinatorics
+BIOL 2335 General Ecology
+BIOL 2334 Genetics
+BIOL 3300 Tropical Ecology
+BIOL 3380 Introductory Microbiology
+BIOL 3600 Introduction to Evolutionary Biology
+BIOL 4471 Behavioral Biology
+BIOL 6417 Marine Ecology
+CHEM 1310 General Chemistry
+CHEM 2311 Organic Chemistry
+CHEM 3111 Inorganic Chemistry
+CHEM 3521 Biochemistry
+CHEM 4401 Molecular Spectroscopy
+CS 2200 Computer Systems and Networks
+CS 3210 Design of Operating Systems
+CS 3451 Computer Graphics
+CS 2040 Embedded Systems
+CS 6457 Video Game Design and Programming
+CS 3600 Introduction to Artifical Intelligence
+CS 4641 Machine Learning
+CS 4644 Deep Learning
+CS 4476 Introduction to Computer Vision
+CS 4475 Computational Photography
+CS 4400 Introduction to Database Systems
+CS 2110 Computer Organization and Programming
+ECON 2105 Principles of Macroeconomics
+ECON 2106 Principles of Microeconomics
+ECON 3150 Economic and Financial Modeling
+ECE 2020 Digital System Design
+ECE 2025 Introduction to Signal Processing
+ECE 2040 Circuit Analysis
+ECE 3025 Electromagnetics
+ECE 3400 Analog Electronics
+ECE 3450 Semiconductor Devices
+ECE 4112 Internetwork Security
+ECE 4181 Embedded Computing Systems
+ECE 4370 Antenna Engineering
+ECE 4607 Mobile and Wireless Networks
+ENGL 1101 English Composition I
+ENGL 1102 English Composition II
+ARCH 2111 History of Architecture I
+ARCH 2112 History of Architecture II
+ARCH 3010 Design Strategies
+ARCH 3241 Fundamentals of Structures
+ARCH 4114 Medieval Architecture
+ARCH 4226 Green Construction
+ARCH 4350 Architectural Theory
+ARCH 4702 Design Scripting
+AE 1601 Introduction to Aerospace Engineering
+AE 2010 Thermodynamics and Fluids Fundamentals
+AE 2220 Dynamics
+AE 2221 3D Dynamics
+AE 3030 Aerodynamics
+AE 3140 Structural Analysis
+ID 1011 Industrial Design Fundamentals I
+ID 1012 Industrial Design Fundamentals II
+ID 2011 Introductory Design I
+ID 2012 Introductory Design II
+ID 2102 3D Modeling
+MGT 2250 Management Statistics
+MGT 3062 Financial Managment
+MGT 3076 Investments
+MGT 3079 Management of Financial Institutions
+MGT 3325 Product Planning
+MGT 3607 Business Ethics
+MGT 3664 Corporate Strategy
+MUSI 3131 Symphonic Band
+MUSI 3231 Chamber Choir
+ME 2202 Dynamics of Rigid Bodies
+ME 3017 System Dynamics
+ME 3180 Machine Design
+ME 3345 Heat Transfer
+ME 4332 Renewable Energy Systems
+ME 4451 Robotics
+NEUR 2001 Principles in Neuroscience
+NEUR 3003 Neuroscience of Behavior
+NEUR 4300 Neuroscience of Memory
+PSYC 1101 General Psychology
+PSYC 2210 Social Psychology
+PSYC 4011 Cognitive Psychology
+PHYS 2211 Introductory Physics I Mechanics
+PHYS 2212 Introductory Physics II Electricity and Magnetism
+PHYS 3141 Thermodynamics
+PHYS 3225 Modern Optics
+PHYS 4147 General and Special Relativity
+CEE 3010 Geomatics
+CEE 3040 Fluid Mechanics
+CEE 3051 Introduction to Structural Engineering
+CEE 3055 Structural Analysis
+CEE 4200 Hydraulic Engineering
+CEE 4406 Applied Geotechnics
+NRE 4214 Reactor Engineering
+ISYE 3133 Engineering Optimization
+ISYE 4134 Constraint Programming
+EAS 2600 Earth Processes
+EAS 4205 Geomorphology
+EAS 4602 Biogeochemical Cycles

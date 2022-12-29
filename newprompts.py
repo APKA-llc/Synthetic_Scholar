@@ -31,26 +31,7 @@ def main():
         current_subject = repr(line).replace("\\n", "").replace("'", "")
         list_of_topics = topic_generator(current_subject)
         print(current_subject + ":" + str(list_of_topics))
-        print(list_of_topics)
-
-        for index, topic in enumerate(list_of_topics):
-            current_topic = list_of_topics[index]
-            prompt = "Write an organized, detailed study guide on " + current_topic + " for " + current_subject + ". Include relevant definitions and equations."
-
-            response = openai.Completion.create(
-                engine=model_engine,
-                prompt=prompt,
-                temperature=0.3,
-                max_tokens=3800,
-                top_p=1,
-                frequency_penalty=0,
-                presence_penalty=0
-            )
-
-            # Get the generated text
-            generated_text = response["choices"][0]["text"]
-
-            generate_pdf(generated_text, current_subject, current_topic)
+        #print(list_of_topics)
 
     # Print the generated text
     # print(generated_text)
@@ -85,7 +66,7 @@ def topic_generator(subject):
     return topics
 
 
-def generate_pdf(text, subject, topic):
+def generate_pdf(text, topic, subjec):
     a4_width_mm = 210
     pt_to_mm = 0.35
     fontsize_pt = 12
@@ -101,9 +82,7 @@ def generate_pdf(text, subject, topic):
 
     pdf.set_margins(25.4, 25.4, 25.4)
 
-    filename = "gt_guides/" + subject + " - " + topic + ".pdf"
-
-    final_text = subject + ": " + topic + "\n\n" + text
+    final_text = filename + "\n\n" + text
     splitted = final_text.split('\n')
 
     for line in splitted:
