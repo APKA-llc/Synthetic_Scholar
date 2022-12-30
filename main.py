@@ -50,42 +50,8 @@ def main():
             current_topic = list_of_topics[index]
             if "CS" in current_subject:
                 prompt = "Act as if you are a student studying for your final exams. Write very detailed lecture notes on " + current_topic + " for the course " + current_subject + ". Please include coding examples, key concepts, and definitions within the notes. Be descriptive and thorough in your notes."
-
-                response = openai.Completion.create(
-                    engine=model_engine,
-                    prompt=prompt,
-                    temperature=0.3,
-                    max_tokens=3800,
-                    top_p=1,
-                    frequency_penalty=0,
-                    presence_penalty=0.5
-                )
-
-                # Get the generated text
-                generated_text = response["choices"][0]["text"]
-
-                print(generated_text)
-
-                # generate_pdf(generated_text, current_subject, current_topic)
             elif "MATH" in current_subject or "PHYS" in current_subject or "CHEM" in current_subject:
                 prompt = "Act as if you are a student studying for your final exams. Write a very detailed study guide on " + current_topic + " for the course " + current_subject + ". Please include relevant equations, key concepts, definitions, and rules when possible. Be descriptive and thorough in your notes."
-
-                response = openai.Completion.create(
-                    engine=model_engine,
-                    prompt=prompt,
-                    temperature=0.3,
-                    max_tokens=3800,
-                    top_p=1,
-                    frequency_penalty=0,
-                    presence_penalty=0.5
-                )
-
-                # Get the generated text
-                generated_text = response["choices"][0]["text"]
-
-                print(generated_text)
-
-                # generate_pdf(generated_text, current_subject, current_topic)
             else:
                 prompt = "Act as if you are a student studying for your final exams. Write very detailed lecture notes on " + current_topic + " for the course " + current_subject + ". Please include relevant key concepts, definitions, rules, and examples within the notes. Be descriptive and thorough in your notes."
                 #prompt = "Write a long free response coding test that is about " + current_topic + " for " + current_subject + " with an answer key at the end. Write the questions as code."
