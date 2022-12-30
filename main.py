@@ -12,7 +12,7 @@ from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 
-API_KEY = "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"
+API_KEY = "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"
 model_engine = "text-davinci-003"
 
 
