@@ -6,19 +6,24 @@ from fpdf import FPDF
 import re
 import time
 
+from reportlab.lib.enums import TA_JUSTIFY, TA_CENTER
+from reportlab.lib.pagesizes import letter
+
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+
 API_KEY = "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"
 model_engine = "text-davinci-003"
+
+
+#"Write a very detailed study guide on " + current_topic + " for the course " + current_subject + ". Please include relevant definitions and equations when possible. Be descriptive and thorogh in your notes."
+#temperature=0.3
 
 
 def main():
     # Set the API key and model
     openai.api_key = API_KEY
     temperature = 1
-
-    # Set the prompt and temperature
-
-    # Get the generated text
-    # generated_text = response["choices"][0]["text"]
 
     subjects = open('topics2.txt', 'r')
 
@@ -136,40 +141,35 @@ def topic_generator(subject):
 
 
 def generate_pdf(text, subject, topic):
-    a4_width_mm = 210
-    pt_to_mm = 0.35
-    fontsize_pt = 12
-    fontsize_mm = fontsize_pt * pt_to_mm
-    margin_bottom_mm = 25.4
-    character_width_mm = 7 * pt_to_mm
-    width_text = (a4_width_mm / character_width_mm)
+    # Create a new PDF with ReportLab
 
-    pdf = FPDF(orientation='P', unit='mm', format='A4')
-    pdf.set_auto_page_break(True, margin=margin_bottom_mm)
-    pdf.add_page()
-    pdf.set_font(family='Times', size=fontsize_pt)
+    document = []
 
-    pdf.set_margins(25.4, 25.4, 25.4)
+    # Title
+    style_temp = getSampleStyleSheet()
+    title_style = ParagraphStyle('Style1',
+                           fontName="Times-Bold",
+                           fontSize=14,
+                           parent=style_temp['Normal'],
+                           alignment=TA_CENTER,
+                           spaceAfter=30)
+    document.append(Paragraph(subject + ": " + topic, title_style))
+    document.append(Spacer(1, 5))
 
-    filename = "gt_guides/" + subject + " - " + topic + ".pdf"
+    for line in text.splitlines():
+        paragraph_style = ParagraphStyle('Style1',
+                                fontName="Times",
+                                fontSize=12,
+                                parent=style_temp['Normal'],
+                                alignment=TA_JUSTIFY,
+                                spaceAfter=1)
 
-    final_text = subject + ": " + topic + "\n\n" + text
-    splitted = final_text.split('\n')
+        document.append(Paragraph(line, paragraph_style))
 
-    for line in splitted:
-        line.encode('utf-16', 'replace').decode('utf-16')
-        lines = textwrap.wrap(line, width_text)
+        document.append(Spacer(1, 5))
 
-        if len(lines) == 0:
-            pdf.ln()
-
-        for wrap in lines:
-            pdf.cell(0, fontsize_mm, wrap, ln=1)
-
-
-
-    pdf.output(filename, 'F')
-
+    SimpleDocTemplate("gt_guides/" + subject + " - " + topic + ".pdf", pagesize=letter, rightMargin=50.5, leftMargin=50.5, topMargin=50.5,
+                      bottomMargin=50.5).build(document)
 
 if __name__ == "__main__":
     main()
