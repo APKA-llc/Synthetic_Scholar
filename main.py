@@ -12,7 +12,7 @@ from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 
-API_KEY = "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"
+API_KEY = "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"
 model_engine = "text-davinci-003"
 
 
@@ -90,22 +90,20 @@ def main():
                 prompt = "Act as if you are a student studying for your final exams. Write very detailed lecture notes on " + current_topic + " for the course " + current_subject + ". Please include relevant key concepts, definitions, rules, and examples within the notes. Be descriptive and thorough in your notes."
                 #prompt = "Write a long free response coding test that is about " + current_topic + " for " + current_subject + " with an answer key at the end. Write the questions as code."
 
-                response = openai.Completion.create(
-                    engine=model_engine,
-                    prompt=prompt,
-                    temperature=0.3,
-                    max_tokens=3800,
-                    top_p=1,
-                    frequency_penalty=0,
-                    presence_penalty=0.5
-                )
+            response = openai.Completion.create(
+                engine=model_engine,
+                prompt=prompt,
+                temperature=0.3,
+                max_tokens=3800,
+                top_p=1,
+                frequency_penalty=0,
+                presence_penalty=0.5
+            )
 
-                # Get the generated text
-                generated_text = response["choices"][0]["text"]
-
-                print(generated_text)
-
-                #generate_pdf(generated_text, current_subject, current_topic)
+            # Get the generated text
+            generated_text = response["choices"][0]["text"]
+            print(generated_text)
+            generate_pdf(generated_text, current_subject, current_topic)
 
     # Print the generated text
     # print(generated_text)
