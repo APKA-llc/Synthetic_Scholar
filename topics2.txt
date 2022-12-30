@@ -1,2 +1,2 @@
-PHYS 2211 Introductory Physics I Mechanics:['Kinematics', 'Dynamics', 'Energy', 'Momentum', 'Angular Momentum', 'Torque', 'Fluids', 'Oscillations', 'Waves']
-PHYS 2212 Introductory Physics II Electricity and Magnetism:['Electric fields', "Gauss's law", 'Electric potential', 'Capacitors', 'Current and resistance', 'DC circuits', 'Magnetic fields', 'Sources of magnetic fields', 'Magnetism of materials', 'Electromagnetic induction', 'AC circuits']
+CS 1331 Introduction to Object-Oriented Programming:['Classes and objects', 'Inheritance', 'Polymorphism', 'Abstract classes and interfaces', 'Exception handling', 'Generics', 'Collections', 'Threads']
+CS 1332 Data Structures and Algorithms:['Data structures: arrays, linked lists, stacks, queues, trees, heaps, hash tables', 'Algorithms: searching, sorting, graph algorithms', 'Algorithm analysis: time and space complexity, asymptotic notation', 'Recursion', 'Basic Java programming']
