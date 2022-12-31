@@ -12,13 +12,8 @@ from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 
-API_KEY = ""
+API_KEY = "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"
 model_engine = "text-davinci-003"
-
-
-#"Write a very detailed study guide on " + current_topic + " for the course " + current_subject + ". Please include relevant definitions and equations when possible. Be descriptive and thorogh in your notes."
-#temperature=0.3
-
 
 def main():
     # Set the API key and model
@@ -50,7 +45,7 @@ def main():
             current_topic = list_of_topics[index]
             if "CS" in current_subject:
                 prompt = "Act as if you are a student studying for your final exams. Write very detailed lecture notes on " + current_topic + " for the course " + current_subject + ". Please include coding examples, key concepts, and definitions within the notes. Be descriptive and thorough in your notes. For every coding example, start with a comment saying Start of Code and end it with a comment saying End of Code."
-            elif "MATH" in current_subject or "PHYS" in current_subject or "CHEM" in current_subject or "CEE" in current_subject or "ECE" in current_subject or "AE" in current_subject or "ME" in current_subject:
+            elif "MATH" in current_subject or "PHYS" in current_subject or "CHEM" in current_subject or "CEE" in current_subject or "ECE" in current_subject or "AE" in current_subject or "ME" in current_subject or "BIOL" in current_subject:
                 prompt = "Act as if you are a student studying for your final exams. Write a very detailed study guide on " + current_topic + " for the course " + current_subject + ". Please include relevant equations, key concepts, definitions, and rules when possible. Be descriptive and thorough in your notes."
             else:
                 prompt = "Act as if you are a student studying for your final exams. Write very detailed lecture notes on " + current_topic + " for the course " + current_subject + ". Please include relevant key concepts, definitions, rules, and examples within the notes. Be descriptive and thorough in your notes."
@@ -66,11 +61,15 @@ def main():
                 presence_penalty=0.5
             )
 
-            # Get the generated text
-            generated_text = response["choices"][0]["text"]
-            print(generated_text)
-            generate_pdf(generated_text, current_subject, current_topic)
-            time.sleep(20)
+            # Get the generated text and generate PDF
+            try:
+                generated_text = response["choices"][0]["text"]
+                generate_pdf(generated_text, current_subject, current_topic)
+                print("Successfully Generated " + current_subject + ": " + current_topic)
+            except:
+                print("Failed to Generate " + current_subject + ": " + current_topic)
+
+            #time.sleep(10)
 
     # Print the generated text
     # print(generated_text)
