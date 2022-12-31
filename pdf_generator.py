@@ -1,4 +1,3 @@
-
 import textwrap
 from fpdf import FPDF
 
@@ -9,7 +8,6 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 
 
-
 def main():
     with open('sample.txt', 'r') as file:
         # Read the contents of the file
@@ -17,7 +15,7 @@ def main():
 
     print(sample_text)
 
-    #generate_pdf(sample_text, "Sample Subject", "Sample Topic")
+    # generate_pdf(sample_text, "Sample Subject", "Sample Topic")
 
     generate_pdf(sample_text, "Sample Subject", "Sample Topic")
 
@@ -61,31 +59,71 @@ def generate_pdf(text, subject, topic):
     # Create a new PDF with ReportLab
 
     document = []
+    finaltext = text.encode('utf-8')
 
     # Title
     style_temp = getSampleStyleSheet()
     title_style = ParagraphStyle('Style1',
-                           fontName="Times-Bold",
-                           fontSize=14,
-                           parent=style_temp['Normal'],
-                           alignment=TA_CENTER,
-                           spaceAfter=30)
+                                 fontName="Times-Bold",
+                                 fontSize=14,
+                                 parent=style_temp['Normal'],
+                                 alignment=TA_CENTER,
+                                 spaceAfter=30)
     document.append(Paragraph(subject + ": " + topic, title_style))
     document.append(Spacer(1, 5))
 
-    for line in text.splitlines():
+    code_mode = False
+    for line in finaltext.splitlines():
+        decoded_line = line.decode()
+
+        char_array = list(decoded_line)
+        num_spaces = 0
+
+        for index, value in enumerate(char_array):
+            if value == ' ':
+                num_spaces = num_spaces + 1
+            else:
+                break
+
+        print(num_spaces)
+        font = ''
+        size = 12
+        spacer = 5
+
+        if code_mode:
+            font = "Courier"
+            size = 11
+            spacer = 3
+        else:
+            font = "Times"
+            size = 12
+            spacer = 9
+
         paragraph_style = ParagraphStyle('Style1',
-                                fontName="Times",
-                                fontSize=12,
-                                parent=style_temp['Normal'],
-                                alignment=TA_JUSTIFY,
-                                spaceAfter=1)
+                                         fontName=font,
+                                         fontSize=size,
+                                         leftIndent=12 * num_spaces)
 
-        document.append(Paragraph(line, paragraph_style))
+        if decoded_line.lower().__contains__("start of code"):
+            code_mode = True
+            # do it for the comment as well
+            font = "Courier"
+            size = 11
+            spacer = 3
+            paragraph_style = ParagraphStyle('Style1',
+                                             fontName=font,
+                                             fontSize=size,
+                                             leftIndent=12 * num_spaces)
 
-        document.append(Spacer(1, 5))
+        elif decoded_line.lower().__contains__("end of code"):
+            code_mode = False
 
-    SimpleDocTemplate("gt_guides/" + subject + " - " + topic + ".pdf", pagesize=letter, rightMargin=50.5, leftMargin=50.5, topMargin=50.5,
+        document.append(Spacer(1, spacer))
+
+        document.append(Paragraph(decoded_line, paragraph_style))
+
+    SimpleDocTemplate("gt_guides/" + subject + " - " + topic + ".pdf", pagesize=letter, rightMargin=50.5,
+                      leftMargin=50.5, topMargin=50.5,
                       bottomMargin=50.5).build(document)
 
 

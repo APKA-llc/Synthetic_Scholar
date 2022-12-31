@@ -12,7 +12,7 @@ from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 
-API_KEY = "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"
+API_KEY = ""
 model_engine = "text-davinci-003"
 
 
@@ -49,7 +49,7 @@ def main():
         for index, topic in enumerate(list_of_topics):
             current_topic = list_of_topics[index]
             if "CS" in current_subject:
-                prompt = "Act as if you are a student studying for your final exams. Write very detailed lecture notes on " + current_topic + " for the course " + current_subject + ". Please include coding examples, key concepts, and definitions within the notes. Be descriptive and thorough in your notes."
+                prompt = "Act as if you are a student studying for your final exams. Write very detailed lecture notes on " + current_topic + " for the course " + current_subject + ". Please include coding examples, key concepts, and definitions within the notes. Be descriptive and thorough in your notes. For every coding example, start with a comment saying Start of Code and end it with a comment saying End of Code."
             elif "MATH" in current_subject or "PHYS" in current_subject or "CHEM" in current_subject or "CEE" in current_subject or "ECE" in current_subject or "AE" in current_subject or "ME" in current_subject:
                 prompt = "Act as if you are a student studying for your final exams. Write a very detailed study guide on " + current_topic + " for the course " + current_subject + ". Please include relevant equations, key concepts, definitions, and rules when possible. Be descriptive and thorough in your notes."
             else:
@@ -70,6 +70,7 @@ def main():
             generated_text = response["choices"][0]["text"]
             print(generated_text)
             generate_pdf(generated_text, current_subject, current_topic)
+            time.sleep(20)
 
     # Print the generated text
     # print(generated_text)
@@ -108,32 +109,72 @@ def generate_pdf(text, subject, topic):
     # Create a new PDF with ReportLab
 
     document = []
+    finaltext = text.encode('utf-8')
 
     # Title
     style_temp = getSampleStyleSheet()
     title_style = ParagraphStyle('Style1',
-                           fontName="Times-Bold",
-                           fontSize=14,
-                           parent=style_temp['Normal'],
-                           alignment=TA_CENTER,
-                           spaceAfter=30)
+                                 fontName="Times-Bold",
+                                 fontSize=14,
+                                 parent=style_temp['Normal'],
+                                 alignment=TA_CENTER,
+                                 spaceAfter=30)
     document.append(Paragraph(subject + ": " + topic, title_style))
     document.append(Spacer(1, 5))
 
-    for line in text.splitlines():
+    code_mode = False
+    for line in finaltext.splitlines():
+        decoded_line = line.decode()
+
+        char_array = list(decoded_line)
+        num_spaces = 0
+
+        for index, value in enumerate(char_array):
+            if value == ' ':
+                num_spaces = num_spaces + 1
+            else:
+                break
+
+        font = ''
+        size = 12
+        spacer = 5
+
+        if code_mode:
+            font = "Courier"
+            size = 11
+            spacer = 3
+        else:
+            font = "Times"
+            size = 12
+            spacer = 9
+
         paragraph_style = ParagraphStyle('Style1',
-                                fontName="Times",
-                                fontSize=12,
-                                parent=style_temp['Normal'],
-                                alignment=TA_JUSTIFY,
-                                spaceAfter=1)
+                                         fontName=font,
+                                         fontSize=size,
+                                         leftIndent=12 * num_spaces)
 
-        document.append(Paragraph(line, paragraph_style))
+        if decoded_line.lower().__contains__("start of code"):
+            code_mode = True
+            # do it for the comment as well
+            font = "Courier"
+            size = 11
+            spacer = 3
+            paragraph_style = ParagraphStyle('Style1',
+                                             fontName=font,
+                                             fontSize=size,
+                                             leftIndent=12 * num_spaces)
 
-        document.append(Spacer(1, 5))
+        elif decoded_line.lower().__contains__("end of code"):
+            code_mode = False
 
-    SimpleDocTemplate("gt_guides/" + subject + " - " + topic + ".pdf", pagesize=letter, rightMargin=50.5, leftMargin=50.5, topMargin=50.5,
+        document.append(Spacer(1, spacer))
+
+        document.append(Paragraph(decoded_line, paragraph_style))
+
+    SimpleDocTemplate("gt_guides/" + subject + " - " + topic + ".pdf", pagesize=letter, rightMargin=50.5,
+                      leftMargin=50.5, topMargin=50.5,
                       bottomMargin=50.5).build(document)
+
 
 if __name__ == "__main__":
     main()
