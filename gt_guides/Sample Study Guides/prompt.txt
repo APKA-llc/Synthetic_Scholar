@@ -1,2 +1,0 @@
-"Write an extremely detailed study guide on [current_topic] for the course [current_subject]. Talk about all aspects of the topic. Include relevant definitions and equations! Also include practice problems when possible."
-temperature=0.25

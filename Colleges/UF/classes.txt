@@ -1,0 +1,27 @@
+ACG 2021 Introduction to Financial Accounting
+MAP 4484 Modeling in Mathematical Biology
+GEB 3373 International Business
+BME 4220 Biomolecular Cell Mechanics
+BME 4321 Dynamics of Cellular Processes
+ECH 3264 Elementary Transport Phenomena
+CAP 3034 Introduction to Computer-Aided Animation
+CAP 4053 Artificial Intelligence for Computer Games
+CAP 4112 Generating Expressiveness in Intelligent Agents and Avatars
+CAP 4136 Malware Reverse Engineering
+CAP 4621 Artificial Intelligence and Heuristics
+CAP 4641 Natural Language Processing
+CDA 3101 Introduction to Computer Organization
+CAP 4730 Computational Structures in Computer Graphics
+CDA 4630 Embedded Systems
+CIS 4362 Introduction to Cryptology
+CNT 4520 Introduction to Mobile Networking
+FIN 4453 Financial Modeling
+FIN 4504 Equity and Capital Markets
+RMI 3011 Risk Management and Insurance
+MTG 3214 Euclidean Geometry
+STA 3100 Programming With Data in R
+STA 3180 Statistical Modelling
+STA 4241 Statistical Learning in R
+STA 4712 Introduction to Survival Analysis
+STA 4853 Introduction to Time Series and Forecasting
+

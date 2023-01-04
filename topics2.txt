@@ -1,5 +1,0 @@
-MATH 1551 Differential Calculus:['Limits', 'Derivatives']
-CS 1331 Introduction to Object-Oriented Programming:['Classes and objects', 'Inheritance', 'Polymorphism']
-MATH 1554 Linear Algebra:['Subspaces', 'Linear independence']
-CHEM 1310 General Chemistry:['Reactions', 'Stoichiometry', 'Thermochemistry']
-PHYS 2211 Introductory Physics I Mechanics:['Kinematics', 'Momentum']
