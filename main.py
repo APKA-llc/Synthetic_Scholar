@@ -24,7 +24,7 @@ def main():
     openai.api_key = API_KEY
     temperature = 1
 
-    subjects = open('topics2.txt', 'r')
+    subjects = open(COLLEGE_DIRECTORY + "/" + COLLEGE_TOPICS, 'r')
 
     current_subject = ""
     list_of_topics = []
@@ -89,43 +89,13 @@ def main():
                 except:
                     print("An error occurred while creating " + current_subject + " - " + current_topic + ".pdf")
 
-                time.sleep(45)
-
+                time.sleep(20)
 
     # Print the generated text
     # print(generated_text)
 
 
-def topic_generator(subject):
-    # Set the API key and model
-    openai.api_key = API_KEY
-
-    prompt = "Create a list of topics you would study in a " + subject + " course in a bulleted format."
-
-    # Make the request to the API
-    response = openai.Completion.create(
-        engine=model_engine,
-        prompt=prompt,
-        temperature=0,
-        max_tokens=750,
-        top_p=1,
-        frequency_penalty=0,
-        presence_penalty=0
-    )
-
-    # Get the generated text
-    generated_text = response["choices"][0]["text"]
-
-    topic_pattern = re.compile(("(.)\s?(.+)"))
-    topics_found = topic_pattern.finditer(generated_text)
-    topics = []
-    for topic in topics_found:
-        topics.append(topic.group(2).strip())
-
-    return topics
-
-
-def generate_pdf(text, subject, topic):
+def generate_pdf(text, subject, topic, prompt_index):
     # Create a new PDF with ReportLab
 
     document = []
