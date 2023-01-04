@@ -2,12 +2,11 @@ import openai
 import requests
 
 import textwrap
-from fpdf import FPDF
 import re
 import time
 
-API_KEY = "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"
-model_engine = "text-davinci-002"
+API_KEY = "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"
+model_engine = "text-davinci-003"
 
 
 def main():
